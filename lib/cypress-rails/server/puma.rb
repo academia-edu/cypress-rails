@@ -7,6 +7,7 @@ module CypressRails
         # If we just run the Puma Rack handler it installs signal handlers which prevent us from being able to interrupt tests.
         # Therefore construct and run the Server instance ourselves.
         # Rack::Handler::Puma.run(app, { Host: host, Port: port, Threads: "0:4", workers: 0, daemon: false }.merge(options))
+        host = ENV['CYPRESS_RAILS_ACTUAL_HOST'] if ENV['CYPRESS_RAILS_ACTUAL_HOST']
         default_options = {Host: host, Port: port, Threads: "0:4", workers: 0, daemon: false}
         options = default_options # .merge(options)
 
